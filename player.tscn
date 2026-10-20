@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://cexyyo55o80s7"]
+
+[ext_resource type="PackedScene" uid="uid://cetrevmnf54d2" path="res://assets/characters/Ranger.glb" id="1_4flbx"]
+[ext_resource type="AnimationLibrary" uid="uid://c3qlm3kxtxuf5" path="res://assets/characters/Animations/gltf/Rig_Medium/Rig_Medium_General.glb" id="3_hqtel"]
+[ext_resource type="AnimationLibrary" uid="uid://qdqqp4gyamfu" path="res://assets/characters/Animations/gltf/Rig_Medium/Rig_Medium_MovementBasic.glb" id="4_sweqy"]
+[ext_resource type="Script" uid="uid://c6reufdbh2hxy" path="res://player.gd" id="Script_player"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_onrkg"]
+radius = 0.55322266
+height = 2.3038785
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=138722496]
+script = ExtResource("Script_player")
+
+[node name="Ranger" parent="." unique_id=491571142 instance=ExtResource("1_4flbx")]
+transform = Transform3D(-0.5, 0, -4.371139e-08, 0, 0.5, 0, 4.371139e-08, 0, -0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=592542297]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5692248, 0)
+shape = SubResource("CapsuleShape3D_onrkg")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="." unique_id=1052389781]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.84779036, 0)
+spring_length = 5.0
+
+[node name="Camera3D" type="Camera3D" parent="SpringArm3D" unique_id=129202824]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1481203441]
+root_node = NodePath("../Ranger")
+libraries/Rig_Medium_General = ExtResource("3_hqtel")
+libraries/Rig_Medium_MovementBasic = ExtResource("4_sweqy")

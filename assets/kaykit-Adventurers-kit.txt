@@ -1,0 +1,9 @@
+KayKit - Character Pack: Adventurers
+Kay Lousberg — https://kaylousberg.itch.io/kaykit-adventurers
+License: Creative Commons Zero v1.0 Universal
+https://creativecommons.org/publicdomain/zero/1.0/
+
+These assets are free for personal and commercial use. Do not resell unmodified copies or claim them as your own.
+
+The grass mesh in mesh/Grass_2_Mesh.res comes from the KayKit Forest Nature Pack, also CC0:
+https://kaylousberg.itch.io/kaykit-forest

@@ -1,0 +1,148 @@
+[gd_scene format=4 uid="uid://busxxw6wmx4f2"]
+
+[ext_resource type="PackedScene" uid="uid://cexyyo55o80s7" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://bcf2oe4v4rotx" path="res://textures/solid-albedo-texture.tres" id="4_lquwl"]
+[ext_resource type="Texture2D" uid="uid://bfjbesb0bpacy" path="res://textures/solid-textture.tres" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://cr2q63isjtmsq" path="res://rope_bridge.tscn" id="5_lquwl"]
+[ext_resource type="Script" uid="uid://qk4wr88t0d1r" path="res://quest_ui.gd" id="7_272bh"]
+[ext_resource type="AudioStreamMP3" uid="uid://cyh1xves0ef76" path="res://The_Saltwater_Summit.mp3" id="8_music"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5vw27"]
+sky_top_color = Color(0.33333334, 0.6666667, 0.6666667, 1)
+sky_horizon_color = Color(0.78431374, 0.9098039, 1, 1)
+ground_horizon_color = Color(0.78431374, 0.9098039, 1, 1)
+
+[sub_resource type="Sky" id="Sky_h2yge"]
+sky_material = SubResource("ProceduralSkyMaterial_5vw27")
+
+[sub_resource type="Environment" id="Environment_1bvp3"]
+background_mode = 2
+sky = SubResource("Sky_h2yge")
+ambient_light_source = 3
+ambient_light_energy = 1.3
+
+[sub_resource type="Gradient" id="Gradient_h2yge"]
+offsets = PackedFloat32Array(0.2, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1bvp3"]
+noise_type = 2
+frequency = 0.03
+cellular_jitter = 3.0
+cellular_return_type = 0
+domain_warp_enabled = true
+domain_warp_type = 1
+domain_warp_amplitude = 50.0
+domain_warp_fractal_type = 2
+domain_warp_fractal_lacunarity = 1.5
+domain_warp_fractal_gain = 1.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_lquwl"]
+noise = SubResource("FastNoiseLite_1bvp3")
+color_ramp = SubResource("Gradient_h2yge")
+seamless = true
+
+[sub_resource type="Terrain3DMaterial" id="Terrain3DMaterial_7mycd"]
+_shader_parameters = {
+&"auto_base_texture": 0,
+&"auto_height_reduction": 0.1,
+&"auto_overlay_texture": 1,
+&"auto_slope": 0.54400002584,
+&"bias_distance": 512.0,
+&"blend_sharpness": 0.5,
+&"depth_blur": 0.0,
+&"enable_macro_variation": true,
+&"enable_projection": true,
+&"flat_terrain_normals": false,
+&"macro_variation1": Color(1, 1, 1, 1),
+&"macro_variation2": Color(1, 1, 1, 1),
+&"macro_variation_slope": 0.333,
+&"mipmap_bias": 1.0,
+&"noise1_angle": 0.0,
+&"noise1_offset": Vector2(0.5, 0.5),
+&"noise1_scale": 0.04,
+&"noise2_scale": 0.076,
+&"noise_texture": SubResource("NoiseTexture2D_lquwl"),
+&"projection_threshold": 0.8
+}
+world_background = 0
+auto_shader = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_272bh"]
+transparency = 4
+cull_mode = 2
+vertex_color_use_as_albedo = true
+backlight_enabled = true
+backlight = Color(0.5, 0.5, 0.5, 1)
+distance_fade_mode = 1
+distance_fade_min_distance = 128.0
+distance_fade_max_distance = 96.0
+
+[sub_resource type="Terrain3DMeshAsset" id="Terrain3DMeshAsset_5vw27"]
+generated_type = 1
+height_offset = 0.5
+material_override = SubResource("StandardMaterial3D_272bh")
+last_lod = 0
+last_shadow_lod = 0
+lod0_range = 128.0
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_dg77c"]
+name = "main"
+albedo_color = Color(0.36836353, 0.38904655, 0.38578367, 1)
+albedo_texture = ExtResource("4_lquwl")
+normal_texture = ExtResource("5_7mycd")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_272bh"]
+name = "main"
+id = 1
+albedo_color = Color(0.34117648, 0.7490196, 0.15686275, 1)
+albedo_texture = ExtResource("4_lquwl")
+normal_texture = ExtResource("5_7mycd")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_yaehf"]
+name = "main"
+id = 2
+albedo_color = Color(0.7792278, 0.61654174, 0.1603364, 1)
+albedo_texture = ExtResource("4_lquwl")
+normal_texture = ExtResource("5_7mycd")
+
+[sub_resource type="Terrain3DTextureAsset" id="Terrain3DTextureAsset_ryguw"]
+name = "main"
+id = 3
+albedo_color = Color(0.24705882, 0.42745098, 0.87058824, 1)
+albedo_texture = ExtResource("4_lquwl")
+normal_texture = ExtResource("5_7mycd")
+
+[sub_resource type="Terrain3DAssets" id="Terrain3DAssets_kek77"]
+mesh_list = Array[Terrain3DMeshAsset]([SubResource("Terrain3DMeshAsset_5vw27")])
+texture_list = Array[Terrain3DTextureAsset]([SubResource("Terrain3DTextureAsset_dg77c"), SubResource("Terrain3DTextureAsset_272bh"), SubResource("Terrain3DTextureAsset_yaehf"), SubResource("Terrain3DTextureAsset_ryguw")])
+
+[node name="Main" type="Node3D" unique_id=1880111635]
+
+[node name="CharacterBody3D" parent="." unique_id=138722496 instance=ExtResource("1_ig7tw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -77.80667, 30.819769, 143.92668)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=659103768]
+environment = SubResource("Environment_1bvp3")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=309108479]
+transform = Transform3D(0.8660254, -0.25, 0.4330127, 0, 0.8660254, 0.5, -0.5, -0.4330127, 0.75, 6.849721, 11.781758, 0)
+shadow_enabled = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1075644273]
+stream = ExtResource("8_music")
+autoplay = true
+
+[node name="QuestUI" type="CanvasLayer" parent="." unique_id=1897417738]
+script = ExtResource("7_272bh")
+
+[node name="Terrain3D" type="Terrain3D" parent="." unique_id=1343117152]
+data_directory = "res://terrain-data"
+material = SubResource("Terrain3DMaterial_7mycd")
+assets = SubResource("Terrain3DAssets_kek77")
+mesh_lods = 10
+top_level = true
+metadata/_edit_lock_ = true
+
+[node name="rope-bridge" parent="." unique_id=1878835105 instance=ExtResource("5_lquwl")]
+transform = Transform3D(0.25881907, 0, -0.9659258, 0, 1, 0, 0.9659258, 0, 0.25881907, -86.94192, 24.692972, 116.557724)
